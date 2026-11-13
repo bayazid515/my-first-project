@@ -3,113 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My First Project</title>
+<title>নামাজের সময়সূচী | সিলেট</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f2f4f7;padding:16px}
-.top{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:14px 16px;border-radius:16px}
-.top b{font-size:20px}
-.top span{color:#0064e3}
-.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-top:16px}
-.next-card{background:#111827;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:18px;margin-top:16px;position:relative;overflow:hidden}
-.next-card:after{content:"⚽";position:absolute;right:-10px;bottom:-20px;font-size:90px;opacity:.15}
-.next-card small{color:#fbbf24;font-weight:700;letter-spacing:1px}
-.next-card h2{font-size:26px;margin:4px 0}
-#countdown{font-size:36px;font-weight:700;color:#fbbf24;font-variant-numeric:tabular-nums}
-.location label{font-size:14px;font-weight:700}
-.location select,.location input{width:100%;padding:12px;margin-top:8px;border:1px solid #ddd;border-radius:10px;font-size:15px}
-.btn{width:100%;padding:13px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:12px}
-.btn-green{background:#00a63d;color:#fff}
-.btn-yellow{background:#f59e0b;color:#fff}
-.btn-outline{background:#fff;border:2px solid #0064e3;color:#0064e3}
-.quick{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.quick button{background:#eef2ff;border:0;padding:10px 14px;border-radius:20px;font-weight:700;cursor:pointer}
-.tabs{display:flex;background:#fff;border-radius:14px;padding:5px;margin-top:16px}
-.tabs button{flex:1;padding:11px;border:0;border-radius:10px;background:transparent;font-weight:700;cursor:pointer}
-.tabs button.active{background:#0064e3;color:#fff}
-.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #eee}
-.row:last-child{border:none}
-.row b{font-size:15px}
-.row p{font-size:13px;color:#666}
-.price{font-weight:800;color:#00a63d}
-.footer{text-align:center;color:#888;font-size:13px;margin:20px 0}
+*{box-sizing:border-box;font-family:'Hind Siliguri',sans-serif}
+body{margin:0;background:#f0f4f1;min-height:100vh}
+.top{background:linear-gradient(135deg,#0a3d2c,#0f6b4a,#14955f);color:#fff;padding:28px 20px 55px;text-align:center;border-radius:0 0 28px 28px;position:relative;overflow:hidden}
+.top::after{content:'🕌';position:absolute;right:15px;top:10px;font-size:70px;opacity:.15}
+.top h1{margin:0;font-size:29px;line-height:1.2}
+.top p{margin:6px 0;opacity:.9}
+.date-pill{display:inline-block;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:20px;font-size:14px;margin-top:8px}
+.next-card{background:#fff;margin:-38px 16px 16px;border-radius:20px;padding:18px;box-shadow:0 10px 25px rgba(0,0,0,.1);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.next-card h3{margin:0;color:#666;font-size:14px}
+.next-card h2{margin:2px 0;font-size:26px;color:#0a3d2c}
+.count{font-size:32px;font-weight:700;color:#e67e00}
+.count small{font-size:14px;color:#666;display:block;font-weight:400}
+.tabs{display:flex;background:#fff;margin:0 16px;border-radius:14px;padding:5px;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+.tabs button{flex:1;border:none;padding:10px;border-radius:10px;background:transparent;font-size:15px;font-weight:600;cursor:pointer}
+.tabs button.active{background:#0a3d2c;color:#fff}
+.list{margin:16px;background:#fff;border-radius:20px;padding:8px 14px;box-shadow:0 5px 15px rgba(0,0,0,.05)}
+.item{display:flex;justify-content:space-between;align-items:center;padding:14px 6px;border-bottom:1px solid #f0f0f0}
+.item:last-child{border:none}
+.item .left{display:flex;align-items:center;gap:12px}
+.icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.item b{font-size:17px;display:block;line-height:1.1}
+.item span{font-size:12px;color:#888}
+.time{font-size:18px;font-weight:700;color:#0a3d2c}
+.item.active{background:#e8f8ee;border-radius:12px}
+.item.active .time{color:#0f9d5f}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px}
+.mini{background:#fff;border-radius:18px;padding:16px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.05)}
+.mini p{margin:0;color:#888;font-size:13px}
+.mini h3{margin:6px 0;font-size:22px;color:#0a3d2c}
+.mini h3.pink{color:#d63384}
+.qibla-box{background:#fff;margin:16px;border-radius:20px;padding:20px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.05)}
+.compass{width:190px;height:190px;border:3px solid #eee;border-radius:50%;margin:15px auto;position:relative;background:radial-gradient(circle,#fff,#f8f8f8)}
+#needle{position:absolute;left:50%;top:50%;width:5px;height:85px;background:linear-gradient(red,#ff6b6b);transform-origin:top center;transform:translateX(-50%) rotate(0deg);border-radius:5px;z-index:2}
+.kaaba{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:34px;z-index:3;background:#fff;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.btn{background:#0a3d2c;color:#fff;border:none;padding:13px 20px;border-radius:12px;font-size:15px;font-weight:600;width:100%;cursor:pointer;margin-top:10px}
+.btn.gold{background:#ffc107;color:#333}
+.footer{text-align:center;color:#999;font-size:13px;padding:10px 0 25px}
+.hide{display:none}
 </style>
 </head>
 <body>
-
 <div class="top">
-  <div><b>My First <span>Project</span></b><p style="font-size:13px;color:#666">Sylhet, Bangladesh</p></div>
-  <div style="font-size:28px">⚽</div>
+<h1>🕌 নামাজের সময়সূচী</h1>
+<p>সিলেট • বাংলাদেশ</p>
+<div class="date-pill" id="todayDate">লোড হচ্ছে...</div><br>
+<div class="date-pill" id="hijriDate" style="margin-top:6px;background:#ffc107;color:#333;font-weight:600"></div>
 </div>
 
 <div class="next-card">
-  <div>
-    <small>NEXT MATCH</small>
-    <h2>Sylhet vs Dhaka</h2>
-    <p style="font-size:13px;opacity:.8">Sylhet Stadium • 4:00 PM</p>
-  </div>
-  <div style="text-align:right">
-    <div id="countdown">02:00:00</div>
-    <small>STARTS IN</small>
-  </div>
-</div>
-
-<div class="card location">
-  <label>📍 আপনার লোকেশন সিলেক্ট করেন</label>
-  <select id="loc">
-    <option>Sylhet Sadar</option>
-    <option>Zindabazar</option>
-    <option>Ambarkhana</option>
-    <option>Uposhohor</option>
-    <option>Shahporan</option>
-  </select>
-  <input type="text" placeholder="আপনার ঠিকানা লিখুন...">
-  <button class="btn btn-green" onclick="alert('লোকেশন সেভ হয়ে গেছে!')">লোকেশন কনফার্ম করেন</button>
-</div>
-
-<div class="card">
-  <b>Quick Service</b>
-  <div class="quick">
-    <button>🎟️ Ticket</button>
-    <button>🚌 Bus</button>
-    <button>🍔 Food</button>
-    <button>🏨 Hotel</button>
-  </div>
+<div><h3>পরের নামাজ</h3><h2 id="nextName">...</h2><p style="margin:0;color:#888" id="nextTime">...</p></div>
+<div style="text-align:right"><div class="count" id="countdown">--:--:--</div><small>বাকি আছে</small></div>
 </div>
 
 <div class="tabs">
-  <button class="active" onclick="showTab(this,'all')">All</button>
-  <button onclick="showTab(this,'today')">Today</button>
-  <button onclick="showTab(this,'tomorrow')">Tomorrow</button>
+<button id="btnNamaz" class="active" onclick="showTab('namaz')">🕌 নামাজ</button>
+<button id="btnRamadan" onclick="showTab('ramadan')">🌙 রমজান</button>
+<button id="btnQibla" onclick="showTab('qibla')">🧭 কিবলা</button>
+<button id="btnAlarm" onclick="showTab('alarm')">🔔 অ্যালার্ম</button>
 </div>
 
-<div class="card" id="list">
-  <div class="row"><div><b>Sylhet Stadium Tour</b><p>Today • 10:00 AM • Sylhet</p></div><b class="price">৳200</b></div>
-  <div class="row"><div><b>Tea Garden Visit</b><p>Today • 2:00 PM • Srimangal</p></div><b class="price">৳500</b></div>
-  <div class="row"><div><b>Jaflong Day Trip</b><p>Tomorrow • 8:00 AM • Jaflong</p></div><b class="price">৳800</b></div>
+<div id="tab-namaz">
+<div class="list" id="prayerList">লোড হচ্ছে...</div>
+<div class="grid">
+<div class="mini"><p>☀️ সূর্যোদয়</p><h3 id="sunrise">--:--</h3></div>
+<div class="mini"><p>🌙 ইশা শেষ</p><h3 id="ishaEnd">--:--</h3></div>
+</div>
 </div>
 
-<button class="btn btn-yellow">এখন বুক করেন</button>
-<button class="btn btn-outline">আরো দেখুন</button>
+<div id="tab-ramadan" class="hide">
+<div class="grid">
+<div class="mini"><p>🌅 সেহরি শেষ</p><h3 id="sehriTime">--:--</h3></div>
+<div class="mini"><p>🌇 ইফতার</p><h3 class="pink" id="iftarTime">--:--</h3></div>
+</div>
+<div class="list" style="text-align:center;padding:18px">
+<h3 style="margin:0">ইফতার বাকি</h3><div style="font-size:34px;font-weight:700;color:#d63384" id="iftarCountdown">--:--:--</div>
+<p id="rojaNo" style="color:#666"></p>
+<p style="font-size:13px;color:#888">আল্লাহুম্মা লাকা সুমতু ওয়া আলা রিজকিকা আফতারতু</p>
+</div>
+</div>
 
-<p class="footer">Made by Bayazid • my-first-project</p>
+<div id="tab-qibla" class="hide">
+<div class="qibla-box">
+<h3 style="margin:0">🧭 কিবলা কম্পাস</h3>
+<p>সিলেট থেকে কিবলা <b>২৭৯° উত্তর-পশ্চিম</b></p>
+<div class="compass">
+<span style="position:absolute;top:6px;left:50%;transform:translateX(-50%);font-weight:700">N</span>
+<span style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);color:#999">S</span>
+<span style="position:absolute;left:8px;top:50%;transform:translateY(-50%);color:#999">W</span>
+<span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);color:#999">E</span>
+<div id="needle"></div><div class="kaaba">🕋</div>
+</div>
+<p id="qiblaDeg" style="font-weight:600;color:#0a3d2c">ফোন ঘুরান</p>
+<button class="btn" onclick="startCompass()">কম্পাস চালু করুন</button>
+</div>
+</div>
+
+<div id="tab-alarm" class="hide">
+<div class="qibla-box">
+<h2 style="margin:0">🔔 আজান অ্যালার্ম</h2>
+<p id="alarmStatus">অ্যালার্ম: <b style="color:red">বন্ধ</b></p>
+<button class="btn" id="alarmBtn" onclick="toggleAlarm()">অ্যালার্ম চালু করুন</button>
+<button class="btn gold" onclick="document.getElementById('azanAudio').play()">🔊 আজান শুনুন</button>
+<p style="font-size:13px;color:#888">অ্যালার্মের জন্য এই পেজটি খোলা রাখতে হবে</p>
+</div>
+</div>
+
+<p class="footer">Made with ❤️ by Bayazid • সিলেট</p>
+<audio id="azanAudio" src="https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/001.mp3" preload="none"></audio>
 
 <script>
-let sec = 2*60*60;
-function tick(){
-  let h = Math.floor(sec/3600);
-  let m = Math.floor((sec%3600)/60);
-  let s = sec%60;
-  document.getElementById('countdown').innerText =
-    String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(s).padStart(2,'0');
-  if(sec>0) sec--;
+let timings=null, alarmOn=false, lastPlayed="";
+function showTab(n){
+ ['namaz','ramadan','qibla','alarm'].forEach(t=>{
+  document.getElementById('tab-'+t).classList.toggle('hide',t!==n);
+  document.getElementById('btn'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===n);
+ });
 }
-setInterval(tick,1000); tick();
-function showTab(btn,tab){
-  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  alert(tab+' দেখানো হচ্ছে!');
+function fmt(t){let[h,m]=t.split(':');h=parseInt(h);let ap=h>=12?'PM':'AM';let h12=h%12||12;return h12+':'+m+' '+ap;}
+async function load(){
+ try{
+  const r=await fetch('https://api.aladhan.com/v1/timingsByCity?city=Sylhet&country=Bangladesh&method=1');
+  const d=await r.json(); timings=d.data.timings;
+  const hij=d.data.date.hijri, greg=d.data.date.gregorian;
+  document.getElementById('todayDate').innerText='📅 '+greg.day+' '+greg.month.en+' '+greg.year+' • '+greg.weekday.en;
+  document.getElementById('hijriDate').innerText=hij.day+' '+hij.month.en+' '+hij.year+' হিজরি';
+  document.getElementById('sehriTime').innerText=fmt(timings.Fajr);
+  document.getElementById('iftarTime').innerText=fmt(timings.Maghrib);
+  document.getElementById('sunrise').innerText=fmt(timings.Sunrise);
+  document.getElementById('ishaEnd').innerText=fmt(timings.Midnight);
+  document.getElementById('rojaNo').innerText=hij.month.number==9? 'আজ '+hij.day+' তম রোজা' : 'এখন রমজান মাস নয়';
+  const prayers=[
+   {n:'ফজর',t:timings.Fajr,i:'🌅',s:'ভোরের নামাজ'},
+   {n:'যোহর',t:timings.Dhuhr,i:'☀️',s:'দুপুরের নামাজ'},
+   {n:'আসর',t:timings.Asr,i:'🌤️',s:'বিকেলের নামাজ'},
+   {n:'মাগরিব',t:timings.Maghrib,i:'🌇',s:'সন্ধ্যার নামাজ'},
+   {n:'ইশা',t:timings.Isha,i:'🌙',s:'রাতের নামাজ'}
+  ];
+  let html=''; prayers.forEach(p=>{html+='<div class="item" id="row-'+p.n+'"><div class="left"><div class="icon" style="background:#f0f8f2">'+p.i+'</div><div><b>'+p.n+'</b><span>'+p.s+'</span></div></div><div class="time">'+fmt(p.t)+'</div></div>'});
+  document.getElementById('prayerList').innerHTML=html;
+  function update(){
+   const now=new Date(); let next=null;
+   for(let p of prayers){let[h,m]=p.t.split(':');let dd=new Date();dd.setHours(h,m,0,0);if(dd>now){next={name:p.n,time:dd,display:p.t};break;}}
+   if(!next){let[h,m]=prayers[0].t.split(':');let dd=new Date();dd.setDate(dd.getDate()+1);dd.setHours(h,m,0,0);next={name:prayers[0].n,time:dd,display:prayers[0].t};}
+   document.getElementById('nextName').innerText=next.name+' এর আজান';
+   document.getElementById('nextTime').innerText=fmt(next.display);
+   let diff=next.time-now;let hh=Math.floor(diff/3600000),mm=Math.floor((diff%3600000)/60000),ss=Math.floor((diff%60000)/1000);
+   document.getElementById('countdown').innerText=hh+':'+String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+   prayers.forEach(p=>{let el=document.getElementById('row-'+p.n);if(el)el.classList.toggle('active',p.n===next.name);});
+   let[ih,im]=timings.Maghrib.split(':');let iftar=new Date();iftar.setHours(ih,im,0,0);if(iftar<now)iftar.setDate(iftar.getDate()+1);
+   let d2=iftar-now;document.getElementById('iftarCountdown').innerText=Math.floor(d2/3600000)+':'+String(Math.floor((d2%3600000)/60000)).padStart(2,'0')+':'+String(Math.floor((d2%60000)/1000)).padStart(2,'0');
+   if(alarmOn){let ns=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');for(let k in timings){if(timings[k].substring(0,5)===ns && lastPlayed!==ns){lastPlayed=ns;document.getElementById('azanAudio').play();if(navigator.vibrate)navigator.vibrate([1000,500,1000]);}}}
+  }
+  update();setInterval(update,1000);
+ }catch(e){document.getElementById('prayerList').innerText='ইন্টারনেট সমস্যা';}
 }
+function toggleAlarm(){alarmOn=!alarmOn;document.getElementById('alarmStatus').innerHTML='অ্যালার্ম: <b style="color:'+(alarmOn?'green':'red')+'">'+(alarmOn?'চালু':'বন্ধ')+'</b>';document.getElementById('alarmBtn').innerText=alarmOn?'অ্যালার্ম বন্ধ করুন':'অ্যালার্ম চালু করুন';}
+function startCompass(){
+ if(typeof DeviceOrientationEvent!=='undefined' && typeof DeviceOrientationEvent.requestPermission==='function'){DeviceOrientationEvent.requestPermission().then(r=>{if(r==='granted')window.addEventListener('deviceorientation',handleOrient);});}
+ else window.addEventListener('deviceorientation',handleOrient);
+ document.getElementById('qiblaDeg').innerText='কম্পাস চালু... ফোন ঘুরান';
+}
+function handleOrient(e){if(e.alpha==null)return;let h=360-e.alpha;let q=279;let diff=q-h;document.getElementById('needle').style.transform='translateX(-50%) rotate('+diff+'deg)';document.getElementById('qiblaDeg').innerText='আপনি '+Math.round(h)+'° দিকে আছেন';}
+load();
 </script>
 </body>
 </html>
