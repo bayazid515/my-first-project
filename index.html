@@ -1,2 +1,115 @@
-<h1>Hello, I am Bayazid</h1>
-<p>My first website on GitHub</p>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My First Project</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f2f4f7;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:14px 16px;border-radius:16px}
+.top b{font-size:20px}
+.top span{color:#0064e3}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-top:16px}
+.next-card{background:#111827;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:18px;border-radius:18px;margin-top:16px;position:relative;overflow:hidden}
+.next-card:after{content:"⚽";position:absolute;right:-10px;bottom:-20px;font-size:90px;opacity:.15}
+.next-card small{color:#fbbf24;font-weight:700;letter-spacing:1px}
+.next-card h2{font-size:26px;margin:4px 0}
+#countdown{font-size:36px;font-weight:700;color:#fbbf24;font-variant-numeric:tabular-nums}
+.location label{font-size:14px;font-weight:700}
+.location select,.location input{width:100%;padding:12px;margin-top:8px;border:1px solid #ddd;border-radius:10px;font-size:15px}
+.btn{width:100%;padding:13px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:12px}
+.btn-green{background:#00a63d;color:#fff}
+.btn-yellow{background:#f59e0b;color:#fff}
+.btn-outline{background:#fff;border:2px solid #0064e3;color:#0064e3}
+.quick{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.quick button{background:#eef2ff;border:0;padding:10px 14px;border-radius:20px;font-weight:700;cursor:pointer}
+.tabs{display:flex;background:#fff;border-radius:14px;padding:5px;margin-top:16px}
+.tabs button{flex:1;padding:11px;border:0;border-radius:10px;background:transparent;font-weight:700;cursor:pointer}
+.tabs button.active{background:#0064e3;color:#fff}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #eee}
+.row:last-child{border:none}
+.row b{font-size:15px}
+.row p{font-size:13px;color:#666}
+.price{font-weight:800;color:#00a63d}
+.footer{text-align:center;color:#888;font-size:13px;margin:20px 0}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div><b>My First <span>Project</span></b><p style="font-size:13px;color:#666">Sylhet, Bangladesh</p></div>
+  <div style="font-size:28px">⚽</div>
+</div>
+
+<div class="next-card">
+  <div>
+    <small>NEXT MATCH</small>
+    <h2>Sylhet vs Dhaka</h2>
+    <p style="font-size:13px;opacity:.8">Sylhet Stadium • 4:00 PM</p>
+  </div>
+  <div style="text-align:right">
+    <div id="countdown">02:00:00</div>
+    <small>STARTS IN</small>
+  </div>
+</div>
+
+<div class="card location">
+  <label>📍 আপনার লোকেশন সিলেক্ট করেন</label>
+  <select id="loc">
+    <option>Sylhet Sadar</option>
+    <option>Zindabazar</option>
+    <option>Ambarkhana</option>
+    <option>Uposhohor</option>
+    <option>Shahporan</option>
+  </select>
+  <input type="text" placeholder="আপনার ঠিকানা লিখুন...">
+  <button class="btn btn-green" onclick="alert('লোকেশন সেভ হয়ে গেছে!')">লোকেশন কনফার্ম করেন</button>
+</div>
+
+<div class="card">
+  <b>Quick Service</b>
+  <div class="quick">
+    <button>🎟️ Ticket</button>
+    <button>🚌 Bus</button>
+    <button>🍔 Food</button>
+    <button>🏨 Hotel</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="active" onclick="showTab(this,'all')">All</button>
+  <button onclick="showTab(this,'today')">Today</button>
+  <button onclick="showTab(this,'tomorrow')">Tomorrow</button>
+</div>
+
+<div class="card" id="list">
+  <div class="row"><div><b>Sylhet Stadium Tour</b><p>Today • 10:00 AM • Sylhet</p></div><b class="price">৳200</b></div>
+  <div class="row"><div><b>Tea Garden Visit</b><p>Today • 2:00 PM • Srimangal</p></div><b class="price">৳500</b></div>
+  <div class="row"><div><b>Jaflong Day Trip</b><p>Tomorrow • 8:00 AM • Jaflong</p></div><b class="price">৳800</b></div>
+</div>
+
+<button class="btn btn-yellow">এখন বুক করেন</button>
+<button class="btn btn-outline">আরো দেখুন</button>
+
+<p class="footer">Made by Bayazid • my-first-project</p>
+
+<script>
+let sec = 2*60*60;
+function tick(){
+  let h = Math.floor(sec/3600);
+  let m = Math.floor((sec%3600)/60);
+  let s = sec%60;
+  document.getElementById('countdown').innerText =
+    String(h).padStart(2,'0')+":"+String(m).padStart(2,'0')+":"+String(s).padStart(2,'0');
+  if(sec>0) sec--;
+}
+setInterval(tick,1000); tick();
+function showTab(btn,tab){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  alert(tab+' দেখানো হচ্ছে!');
+}
+</script>
+</body>
+</html>
